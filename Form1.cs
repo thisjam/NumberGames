@@ -16,7 +16,7 @@ namespace designMode
 
 
 
-        int currentLevel =3;
+        int currentLevel =0;
         int successCount = 0;
 
 
@@ -153,6 +153,7 @@ namespace designMode
                     Reset();
                     MessageBox.Show($"恭喜通过第{currentLevel}关！用时{sw.Elapsed}秒");                
                     fMS.NextTo(FMS.State.ready);
+                    sw.Restart();
                 }
             }
             else
@@ -186,7 +187,7 @@ namespace designMode
             CreateForm2();
             SplitRetangle();        
             fMS.start();
-         
+            sw.Restart();
 
         }
 
@@ -264,8 +265,7 @@ namespace designMode
         private void TimeOut(object? sender, System.Timers.ElapsedEventArgs e)
         {
 
-            timer.Stop();
-            sw.Restart();
+            timer.Stop();        
             draw.DrawBlock(CImage);
             this.Invoke(new Action(() =>
             {
